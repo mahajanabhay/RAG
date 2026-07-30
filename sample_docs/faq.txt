@@ -1,0 +1,19 @@
+Product: TaskFlow (project management SaaS)
+
+Q: How do I reset my password?
+A: Go to Settings > Account > Reset Password. A reset link will be emailed within 5 minutes.
+
+Q: What are the pricing plans?
+A: Free plan supports up to 3 projects. Pro plan is $12/month with unlimited projects and priority support. Team plan is $29/month with 10 seats included.
+
+Q: How do I invite team members?
+A: Go to Settings > Team > Invite Member, enter their email, and assign a role (Admin, Editor, Viewer).
+
+Q: Does TaskFlow have an API?
+A: Yes, REST API access is available on Pro and Team plans. API keys can be generated under Settings > Developer.
+
+Q: How do I cancel my subscription?
+A: Go to Settings > Billing > Cancel Subscription. You'll retain access until the end of your billing cycle.
+
+Q: Is there a mobile app?
+A: Yes, TaskFlow is available on iOS and Android.
