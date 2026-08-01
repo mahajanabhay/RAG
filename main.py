@@ -17,6 +17,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.on_event("startup")
+def seed_data():
+    if collection.count() == 0:
+        ingest_file("sample_docs/faq.txt", "faq")
+
 @app.get("/")
 def root():
     return {"status": "ok"}
