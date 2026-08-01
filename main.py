@@ -1,6 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-from ingest import ingest_file, collection, model
+from ingest import ingest_file, collection, embed
 import shutil, os
 from groq import Groq
 from dotenv import load_dotenv
@@ -32,7 +32,7 @@ async def upload(file: UploadFile = File(...)):
 
 @app.post("/chat")
 async def chat(query: str):
-    q_embedding = model.encode([query]).tolist()
+    q_embedding = embed([query])
     results = collection.query(query_embeddings=q_embedding, n_results=3)
     context = "\n".join(results["documents"][0])
     prompt = f"Answer using only this context:\n{context}\n\nQuestion: {query}"

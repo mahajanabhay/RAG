@@ -1,10 +1,13 @@
 import chromadb
-from sentence_transformers import SentenceTransformer
+from fastembed import TextEmbedding
 from pypdf import PdfReader
 
 client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.get_or_create_collection("docs")
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = TextEmbedding(model_name="BAAI/bge-small-en-v1.5")
+
+def embed(texts):
+    return [e.tolist() for e in model.embed(texts)]
 
 def chunk_text(text, size=500, overlap=50):
     chunks = []
@@ -22,7 +25,7 @@ def ingest_file(file_path, doc_id):
         with open(file_path, "r", encoding="utf-8") as f:
             text = f.read()
     chunks = chunk_text(text)
-    embeddings = model.encode(chunks).tolist()
+    embeddings = embed(chunks)
     ids = [f"{doc_id}_{i}" for i in range(len(chunks))]
     collection.add(documents=chunks, embeddings=embeddings, ids=ids)
     return len(chunks)
